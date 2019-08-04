@@ -2,6 +2,9 @@
 set nocompatible
 filetype off
 
+let mapleader = "\<Tab>"
+let maplocalleader = "\<Tab>"
+
 " Watch for changes outside the environment
 set autoread
 
@@ -73,16 +76,16 @@ filetype plugin indent on
 
 " Configure NerdTree
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "m",
-    \ "Staged"    : "s",
-    \ "Untracked" : "u",
-    \ "Renamed"   : "r",
-    \ "Unmerged"  : "=",
-    \ "Deleted"   : "x",
-    \ "Dirty"     : "d",
-    \ "Clean"     : "c",
-    \ "Unknown"   : "?"
-    \ }
+            \ "Modified"  : "m",
+            \ "Staged"    : "s",
+            \ "Untracked" : "u",
+            \ "Renamed"   : "r",
+            \ "Unmerged"  : "=",
+            \ "Deleted"   : "x",
+            \ "Dirty"     : "d",
+            \ "Clean"     : "c",
+            \ "Unknown"   : "?"
+            \ }
 let NERDTreeShowHidden = 0
 " NERDTreeFixes
 let g:nerdtree_tabs_focus_on_files = 1
@@ -98,6 +101,8 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_escape_grep = 1
 autocmd BufWritePost * GitGutter
 
+let g:solarized_termcolors=256
+
 " Returns true if paste mode is enabled
 function! HasPaste()
     if &paste
@@ -112,29 +117,59 @@ endfunction
 """""""""""""""""""""""""""""""""
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+noremap <C-j> <C-W>j
+noremap <C-k> <C-W>k
+noremap <C-h> <C-W>h
+noremap <C-l> <C-W>l
 
-map <C-n> :NERDTreeTabsToggle<CR>
+noremap <C-n> :NERDTreeTabsToggle<CR>
 
 " Fast macro access
-map <F1> @w
-map <F2> @e
-map <F3> @r
-map <F4> @t
+noremap <F1> @w
+noremap <F2> @e
+noremap <F3> @r
+noremap <F4> @t
 " HexMode
-map <F9> :Hexmode<CR>
+noremap <F9> :Hexmode<CR>
 " Tagbar
-map <F10> :TagbarToggle<CR>
-nmap <F11> :GitGutterLineHighlightsToggle<CR>
+noremap <F10> :TagbarToggle<CR>
+nnoremap <F11> :GitGutterLineHighlightsToggle<CR>
 
 " fzf file search settings
-nmap <C-p> :Files<CR>
+nnoremap <C-p> :Files<CR>
 nnoremap <C-s> :Rg<Space>
 
+" Some cheaty mappings
+nnoremap <C-j> a<CR><esc>$
+nnoremap <S-Enter> O<esc>
 
+" Cheap ripoff of the surround plugin
+vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
+vnoremap <leader>( <esc>`<i(<esc>`>a)<esc>
+vnoremap <leader>{ <esc>`<i{<esc>`>a}<esc>
+noremap <leader>v `<v`>
+vnoremap <leader>/ di/*  */<esc>2hP
+nnoremap <leader>/ I//<esc>
+
+" some helpers for functions
+onoremap in( :<C-u>normal! f(vi(<cr>
+onoremap il( :<C-u>normal! F(vi(<cr>
+onoremap an( :<C-u>normal! f(va(<cr>
+onoremap al( :<C-u>normal! F(va(<cr>
+
+onoremap in{ :<C-u>execute "normal! /{\rvi{"<cr>
+onoremap an{ :<C-u>execute "normal! /{\rva{"<cr>
+
+
+augroup commentary
+    autocmd!
+    " Python doesn't actually have multiline comments
+    autocmd FileType python vnoremap <buffer> <leader>/ <NOP>
+    autocmd FileType python nnoremap <buffer> <leader>/ I#<esc>
+augroup end
+" I NEED TO BREAK MY BAD HABITS
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -158,7 +193,7 @@ colorscheme solarized
 
 " Default Window Sizing
 if has("gui_running")
-  set lines=38 columns=157
+    set lines=38 columns=157
 endif
 
 " Make backspace work more 'normally'

@@ -144,9 +144,10 @@ nnoremap <C-s> :Rg<Space>
 nnoremap <S-Enter> O<esc>
 
 " Cheap ripoff of the surround plugin
-vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
-vnoremap <leader>( <esc>`<i(<esc>`>a)<esc>
-vnoremap <leader>{ <esc>`<i{<esc>`>a}<esc>
+vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>
+vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
+vnoremap <leader>( <esc>`<i(<esc>`>la)<esc>
+vnoremap <leader>{ <esc>`<i{<esc>`>la}<esc>
 vnoremap <leader>/ di/*  */<esc>2hP
 nnoremap <leader>/ I//<esc>
 

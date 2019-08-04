@@ -58,18 +58,20 @@ Plugin 'mhinz/vim-mix-format'
 Plugin 'ervandew/supertab'
 Plugin 'diepm/vim-rest-console'
 Plugin 'tpope/vim-obsession'
+Plugin 'frioux/vim-regedit'
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'ternjs/tern_for_vim' "Once installed: cd ~/.vim/bundle/tern_for_vim/ && npm install
 " UI
 
 " Colorschemes
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasiser/vim-code-dark'
 
 
 call vundle#end()
 filetype plugin indent on
 
 " Configure NerdTree
-map <C-n> :NERDTreeTabsToggle<CR>
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "m",
     \ "Staged"    : "s",
@@ -89,17 +91,7 @@ let g:nerdtree_tabs_open_on_console_startup = 1
 let g:nerdtree_tabs_synchronize_view = 1
 let g:NERDTreeNodeDelimiter = "\u00a0"
 
-" fzf file search settings
-nmap <C-p> :Files<CR>
-nnoremap <C-s> :Rg<Space>
-
-" HexMode
-map <F5> :Hexmode<CR>
-" Tagbar
-map <F8> :TagbarToggle<CR>
-
 " gitgutter
-nmap <F9> :GitGutterLineHighlightsToggle<CR>
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_removed = '-'
@@ -114,14 +106,35 @@ function! HasPaste()
     return ''
 endfunction
 
+
+"""""""""""""""""""""""""""""""""
+" KEY MAPPINGS
+"""""""""""""""""""""""""""""""""
+
 " Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+map <C-n> :NERDTreeTabsToggle<CR>
+
+" Fast macro access
 map <F1> @w
 map <F2> @e
+map <F3> @r
+map <F4> @t
+" HexMode
+map <F9> :Hexmode<CR>
+" Tagbar
+map <F10> :TagbarToggle<CR>
+nmap <F11> :GitGutterLineHighlightsToggle<CR>
+
+" fzf file search settings
+nmap <C-p> :Files<CR>
+nnoremap <C-s> :Rg<Space>
+
+
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -141,7 +154,7 @@ set dir=$HOME/_vimtmp//
 
 " Syntax Highlighting
 syntax on
-colorscheme codedark
+colorscheme solarized
 
 " Default Window Sizing
 if has("gui_running")

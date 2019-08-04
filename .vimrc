@@ -140,7 +140,7 @@ nnoremap <C-p> :Files<CR>
 nnoremap <C-s> :Rg<Space>
 
 " Some cheaty mappings
-nnoremap <C-j> a<CR><esc>$
+" nnoremap <C-j> a<CR><esc>$
 nnoremap <S-Enter> O<esc>
 
 " Cheap ripoff of the surround plugin

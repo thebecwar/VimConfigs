@@ -147,7 +147,6 @@ nnoremap <S-Enter> O<esc>
 vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
 vnoremap <leader>( <esc>`<i(<esc>`>a)<esc>
 vnoremap <leader>{ <esc>`<i{<esc>`>a}<esc>
-noremap <leader>v `<v`>
 vnoremap <leader>/ di/*  */<esc>2hP
 nnoremap <leader>/ I//<esc>
 

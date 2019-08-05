@@ -22,11 +22,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'gregsexton/gitv'
 Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
-Plugin 'nanotech/jellybeans.vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ryanoasis/vim-webdevicons'
-Plugin 'eddsteel/vim-vimbrant'
 Plugin 'henrik/vim-indexed-search'
 Plugin 'elzr/vim-json'
 Plugin 'pangloss/vim-javascript'
@@ -36,24 +34,14 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'fidian/hexmode'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'sheerun/vim-polyglot'
-" Plug 'joonty/vdebug' " Uncomment when you need dbugger
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'heavenshell/vim-jsdoc'
-Plugin 'tobyS/vmustache'
-Plugin 'fatih/vim-go'
-Plugin 'slashmili/alchemist.vim'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
 Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'jalvesaq/Nvim-R'
 Plugin 'gabrielelana/vim-markdown'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'janko-m/vim-test'
-Plugin 'tpope/vim-dispatch'
 Plugin 'vim-utils/vim-interruptless'
-Plugin 'w0rp/ale'
-Plugin 'crusoexia/vim-monokai'
-Plugin 'posva/vim-vue'
+Plugin 'dense-analysis/ale'
 Plugin 'stephenway/postcss.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'hashivim/vim-terraform'
@@ -63,7 +51,6 @@ Plugin 'diepm/vim-rest-console'
 Plugin 'tpope/vim-obsession'
 Plugin 'frioux/vim-regedit'
 " Plug 'Valloric/YouCompleteMe'
-" Plug 'ternjs/tern_for_vim' "Once installed: cd ~/.vim/bundle/tern_for_vim/ && npm install
 " UI
 
 " Colorschemes
@@ -94,12 +81,35 @@ let g:nerdtree_tabs_open_on_console_startup = 1
 let g:nerdtree_tabs_synchronize_view = 1
 let g:NERDTreeNodeDelimiter = "\u00a0"
 
+"vim-javascript
+let g:javascript_plugin_jsdoc = 1
+augroup javascriptFolding
+    autocmd!
+    autocmd FileType javascript setlocal foldmethod=syntax
+augroup END
+set foldlevelstart=99
+
+"vim-jsdoc
+let g:jsdoc_allow_input_prompt = 1
+let g:jsdoc_input_description = 1
+let g:jsdoc_return = 1 "Add the @return tag.
+nnoremap <leader>d :JsDoc<CR>
+
 " gitgutter
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_escape_grep = 1
-autocmd BufWritePost * GitGutter
+augroup gitguttter
+  autocmd!
+  autocmd BufWritePost * GitGutter
+augroup END
+
+" ALE
+let g:ale_linters = {
+\   'javascript': ['tsserver'],
+\}
+let g:ale_completion_enabled=1
 
 let g:solarized_termcolors=256
 

@@ -46,7 +46,7 @@ Plugin 'stephenway/postcss.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'hashivim/vim-terraform'
 Plugin 'mhinz/vim-mix-format'
-Plugin 'ervandew/supertab'
+Plugin 'ervandew/supertab' 
 Plugin 'diepm/vim-rest-console'
 Plugin 'tpope/vim-obsession'
 Plugin 'frioux/vim-regedit'
@@ -57,9 +57,12 @@ Plugin 'frioux/vim-regedit'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasiser/vim-code-dark'
 
-
 call vundle#end()
 filetype plugin indent on
+
+" Is this 1970? Why do I need it to ding.
+set visualbell 
+set t_vb=
 
 " Configure NerdTree
 let g:NERDTreeIndicatorMapCustom = {
@@ -110,6 +113,7 @@ let g:ale_linters = {
 \   'javascript': ['tsserver'],
 \}
 let g:ale_completion_enabled=1
+set completeopt+=noinsert
 
 let g:solarized_termcolors=256
 
@@ -121,6 +125,14 @@ function! HasPaste()
     return ''
 endfunction
 
+
+" VSCode Integration
+command! OpenCwdInVSCode execute "silent !code \"" . getcwd() . "\" --goto \"" . expand("%") . ":" . line(".") . ":" . col(".") . "\"" | redraw!
+
+" Terminal spawn commands
+command! Cmd execute "silent :term ++close cmd"
+command! Wsl execute "silent :term ++close wsl.exe"
+command! Pwsh execute "silent :term ++close powershell -ExecutionPolicy Bypass"
 
 """""""""""""""""""""""""""""""""
 " KEY MAPPINGS
@@ -139,6 +151,9 @@ noremap <F1> @w
 noremap <F2> @e
 noremap <F3> @r
 noremap <F4> @t
+
+nnoremap <F5> :OpenCwdInVSCode<cr>
+nnoremap <F6> :nohlsearch<cr>
 " HexMode
 noremap <F9> :Hexmode<CR>
 " Tagbar
@@ -191,6 +206,8 @@ set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 """"""""""""""""""""""""""""""
 
+" set highlighted search mode
+set hlsearch
 
 " move tmp files out to another directory. Double slash is so that the
 " files are named with a prefix. (So you can open c:\a.txt and c:\b\a.txt)
@@ -203,7 +220,10 @@ colorscheme solarized
 
 " Default Window Sizing
 if has("gui_running")
-    set lines=38 columns=157
+    augroup fullscreen
+        autocmd!
+        autocmd GUIEnter * simalt ~x
+    augroup END
 endif
 
 " Make backspace work more 'normally'
@@ -236,4 +256,5 @@ augroup languagetabs
     autocmd FileType javascript set tabstop=2 shiftwidth=2
     autocmd FileType yaml set tabstop=2 shiftwidth=2
 augroup END
+
 

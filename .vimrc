@@ -20,7 +20,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'gregsexton/gitv'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'majutsushi/tagbar'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
@@ -49,6 +50,7 @@ Plugin 'mhinz/vim-mix-format'
 Plugin 'ervandew/supertab' 
 Plugin 'diepm/vim-rest-console'
 Plugin 'tpope/vim-obsession'
+Plugin 'mhinz/vim-startify'
 Plugin 'frioux/vim-regedit'
 " Plug 'Valloric/YouCompleteMe'
 " UI
@@ -60,9 +62,6 @@ Plugin 'tomasiser/vim-code-dark'
 call vundle#end()
 filetype plugin indent on
 
-" Is this 1970? Why do I need it to ding.
-set visualbell 
-set t_vb=
 
 " Configure NerdTree
 let g:NERDTreeIndicatorMapCustom = {
@@ -76,13 +75,28 @@ let g:NERDTreeIndicatorMapCustom = {
             \ "Clean"     : "c",
             \ "Unknown"   : "?"
             \ }
-let NERDTreeShowHidden = 0
+let NERDTreeShowHidden = 1
 " NERDTreeFixes
 let g:nerdtree_tabs_focus_on_files = 1
 let g:nerdtree_tabs_autoclose = 1
 let g:nerdtree_tabs_open_on_console_startup = 1
 let g:nerdtree_tabs_synchronize_view = 1
 let g:NERDTreeNodeDelimiter = "\u00a0"
+
+"Airline
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols = {}
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
 
 "vim-javascript
 let g:javascript_plugin_jsdoc = 1
@@ -112,6 +126,9 @@ augroup END
 let g:ale_linters = {
 \   'javascript': ['tsserver'],
 \}
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\}
 let g:ale_completion_enabled=1
 set completeopt+=noinsert
 
@@ -133,6 +150,16 @@ command! OpenCwdInVSCode execute "silent !code \"" . getcwd() . "\" --goto \"" .
 command! Cmd execute "silent :term ++close cmd"
 command! Wsl execute "silent :term ++close wsl.exe"
 command! Pwsh execute "silent :term ++close powershell -ExecutionPolicy Bypass"
+
+function! BnSkipTerm()
+  let start_buffer = bufnr('%')
+  bn
+  while &buftype ==# 'terminal' && bufnr('%') != start_buffer
+    bn
+  endwhile
+endfunction
+
+
 
 """""""""""""""""""""""""""""""""
 " KEY MAPPINGS
@@ -181,9 +208,22 @@ onoremap in( :<C-u>normal! f(vi(<cr>
 onoremap il( :<C-u>normal! F(vi(<cr>
 onoremap an( :<C-u>normal! f(va(<cr>
 onoremap al( :<C-u>normal! F(va(<cr>
+onoremap in[ :<C-u>normal! f[vi[<cr>
+onoremap il[ :<C-u>normal! F[vi[<cr>
+onoremap an[ :<C-u>normal! f[va[<cr>
+onoremap al[ :<C-u>normal! F[va[<cr>
 
 onoremap in{ :<C-u>execute "normal! /{\rvi{"<cr>
 onoremap an{ :<C-u>execute "normal! /{\rva{"<cr>
+
+" Cheap buffer navigation
+nnoremap <silent> <leader>bq :bdelete %<CR>
+nnoremap <silent> <leader>bh :bprevious<CR>
+nnoremap <silent> <leader>bl :call BnSkipTerm()<CR>
+
+" Cheap line movement
+nnoremap <leader>- ddp
+nnoremap <leader>= ddkP
 
 
 augroup commentary
@@ -220,6 +260,7 @@ colorscheme solarized
 
 " Default Window Sizing
 if has("gui_running")
+    set guifont=Hack_NF:h10:cANSI:qDRAFT
     augroup fullscreen
         autocmd!
         autocmd GUIEnter * simalt ~x
@@ -257,4 +298,10 @@ augroup languagetabs
     autocmd FileType yaml set tabstop=2 shiftwidth=2
 augroup END
 
+
+" Is this 1970? Why do I need it to ding.
+set visualbell 
+set t_vb=
+" no really I don't want a freaking bell or a freaking flash
+autocmd GUIEnter * set visualbell t_vb=
 

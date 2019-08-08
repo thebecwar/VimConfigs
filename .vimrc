@@ -150,6 +150,7 @@ command! OpenCwdInVSCode execute "silent !code \"" . getcwd() . "\" --goto \"" .
 command! Cmd execute "silent :term ++close cmd"
 command! Wsl execute "silent :term ++close wsl.exe"
 command! Pwsh execute "silent :term ++close powershell -ExecutionPolicy Bypass"
+command! W w
 
 function! BnSkipTerm()
   let start_buffer = bufnr('%')

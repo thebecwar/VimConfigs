@@ -52,6 +52,7 @@ Plugin 'diepm/vim-rest-console'
 Plugin 'tpope/vim-obsession'
 Plugin 'mhinz/vim-startify'
 Plugin 'frioux/vim-regedit'
+Plugin 'Konfekt/FastFold'
 " Plug 'Valloric/YouCompleteMe'
 " UI
 
@@ -100,11 +101,27 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 
 "vim-javascript
 let g:javascript_plugin_jsdoc = 1
-augroup javascriptFolding
-    autocmd!
-    autocmd FileType javascript setlocal foldmethod=syntax
-augroup END
 set foldlevelstart=99
+
+"FastFold
+augroup languageFolding
+    autocmd!
+    autocmd FileType json set foldmethod=syntax
+    autocmd FileType javascript set foldmethod=syntax
+    autocmd FileType yaml set foldmethod=syntax
+augroup END
+let g:markdown_folding = 1
+let g:tex_fold_enabled = 1
+let g:vimsyn_folding = 'af'
+let g:xml_syntax_folding = 1
+let g:javaScript_fold = 1
+let g:sh_fold_enabled= 7
+let g:ruby_fold = 1
+let g:perl_fold = 1
+let g:perl_fold_blocks = 1
+let g:r_syntax_folding = 1
+let g:rust_fold = 1
+let g:php_folding = 1
 
 "vim-jsdoc
 let g:jsdoc_allow_input_prompt = 1
@@ -190,6 +207,8 @@ nnoremap <F11> :GitGutterLineHighlightsToggle<CR>
 
 " fzf file search settings
 nnoremap <C-p> :Files<CR>
+nnoremap <C-f> :GFiles<CR>
+nnoremap <m-b> :Gblame<CR>
 nnoremap <C-s> :Rg<Space>
 
 " Some cheaty mappings
@@ -213,6 +232,10 @@ onoremap in[ :<C-u>normal! f[vi[<cr>
 onoremap il[ :<C-u>normal! F[vi[<cr>
 onoremap an[ :<C-u>normal! f[va[<cr>
 onoremap al[ :<C-u>normal! F[va[<cr>
+onoremap in' :<C-u>normal! f'vi'<cr>
+onoremap il' :<C-u>normal! F'vi'<cr>
+onoremap an' :<C-u>normal! f'va'<cr>
+onoremap al' :<C-u>normal! F'va'<cr>
 
 onoremap in{ :<C-u>execute "normal! /{\rvi{"<cr>
 onoremap an{ :<C-u>execute "normal! /{\rva{"<cr>

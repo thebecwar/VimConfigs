@@ -53,6 +53,7 @@ Plugin 'tpope/vim-obsession'
 Plugin 'mhinz/vim-startify'
 Plugin 'frioux/vim-regedit'
 Plugin 'Konfekt/FastFold'
+Plugin 'mbbill/undotree'
 " Plug 'Valloric/YouCompleteMe'
 " UI
 
@@ -198,8 +199,9 @@ noremap <F2> @e
 noremap <F3> @r
 noremap <F4> @t
 
-nnoremap <F5> :OpenCwdInVSCode<cr>
-nnoremap <F6> :nohlsearch<cr>
+nnoremap <F5> :OpenCwdInVSCode<CR>
+nnoremap <F6> :nohlsearch<CR>
+nnoremap <F7> :UndotreeToggle<CR>
 " HexMode
 noremap <F9> :Hexmode<CR>
 " Tagbar

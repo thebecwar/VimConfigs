@@ -53,7 +53,6 @@ Plugin 'tpope/vim-obsession'
 Plugin 'mhinz/vim-startify'
 Plugin 'frioux/vim-regedit'
 Plugin 'Konfekt/FastFold'
-Plugin 'tpope/vim-dadbod'
 " Plug 'Valloric/YouCompleteMe'
 " UI
 
@@ -168,6 +167,7 @@ command! OpenCwdInVSCode execute "silent !code \"" . getcwd() . "\" --goto \"" .
 command! Cmd execute "silent :term ++close cmd"
 command! Wsl execute "silent :term ++close wsl.exe"
 command! Pwsh execute "silent :term ++close powershell -ExecutionPolicy Bypass"
+command! -nargs=* Mongo execute "silent :term ++close mongo \<args>"
 command! W w
 
 function! BnSkipTerm()

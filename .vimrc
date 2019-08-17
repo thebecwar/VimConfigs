@@ -53,6 +53,8 @@ Plugin 'tpope/vim-obsession'
 Plugin 'mhinz/vim-startify'
 Plugin 'frioux/vim-regedit'
 Plugin 'Konfekt/FastFold'
+Plugin 'tpope/vim-dadbod'
+Plugin 'tpope/vim-speeddating'
 " Plug 'Valloric/YouCompleteMe'
 " UI
 

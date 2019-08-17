@@ -66,16 +66,16 @@ filetype plugin indent on
 
 " Configure NerdTree
 let g:NERDTreeIndicatorMapCustom = {
-            \ "Modified"  : "m",
-            \ "Staged"    : "s",
-            \ "Untracked" : "u",
-            \ "Renamed"   : "r",
-            \ "Unmerged"  : "=",
-            \ "Deleted"   : "x",
-            \ "Dirty"     : "d",
-            \ "Clean"     : "c",
-            \ "Unknown"   : "?"
-            \ }
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+\ }
 let NERDTreeShowHidden = 1
 " NERDTreeFixes
 let g:nerdtree_tabs_focus_on_files = 1

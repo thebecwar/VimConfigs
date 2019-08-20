@@ -179,7 +179,9 @@ function! BnSkipTerm()
   endwhile
 endfunction
 
-
+function! CollapseFunctions()
+  %g/function/normal zc
+endfunction
 
 """""""""""""""""""""""""""""""""
 " KEY MAPPINGS
@@ -202,6 +204,7 @@ noremap <F4> @t
 nnoremap <F5> :OpenCwdInVSCode<CR>
 nnoremap <F6> :nohlsearch<CR>
 nnoremap <F7> :UndotreeToggle<CR>
+nnoremap <F8> :call CollapseFunctions()<CR>
 " HexMode
 noremap <F9> :Hexmode<CR>
 " Tagbar
@@ -211,7 +214,7 @@ nnoremap <F11> :GitGutterLineHighlightsToggle<CR>
 " fzf file search settings
 nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :GFiles<CR>
-nnoremap <m-b> :Gblame<CR>
+nnoremap <C-b> :Gblame<CR>
 nnoremap <C-s> :Rg<Space>
 
 " Some cheaty mappings

@@ -99,6 +99,7 @@ let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 "vim-javascript
 let g:javascript_plugin_jsdoc = 1
@@ -328,6 +329,16 @@ augroup languagetabs
     autocmd FileType yaml set tabstop=2 shiftwidth=2
 augroup END
 
+
+" From Sensible.vim
+set wildmenu
+set incsearch
+if &history < 1000
+  set history=1000
+endif
+if &tabpagemax < 50
+  set tabpagemax=50
+endif
 
 " Is this 1970? Why do I need it to ding.
 set visualbell 

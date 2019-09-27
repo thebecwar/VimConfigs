@@ -180,6 +180,8 @@ function! BnSkipTerm()
   endwhile
 endfunction
 
+command! -nargs=1 OpenScratch execute "silent new | setlocal buftype=nofile noswapfile | f <args>"
+
 function! CollapseFunctions()
   %g/function/normal zc
 endfunction
@@ -197,10 +199,10 @@ noremap <C-l> <C-W>l
 noremap <C-n> :NERDTreeTabsToggle<CR>
 
 " Fast macro access
-noremap <F1> @w
-noremap <F2> @e
-noremap <F3> @r
-noremap <F4> @t
+noremap <F1> @q
+noremap <F2> @w
+noremap <F3> @e
+noremap <F4> @r
 
 nnoremap <F5> :OpenCwdInVSCode<CR>
 nnoremap <F6> :nohlsearch<CR>
@@ -211,6 +213,7 @@ noremap <F9> :Hexmode<CR>
 " Tagbar
 noremap <F10> :TagbarToggle<CR>
 nnoremap <F11> :GitGutterLineHighlightsToggle<CR>
+nnoremap <F12> :OpenScratch temp<CR>
 
 " fzf file search settings
 nnoremap <C-p> :Files<CR>

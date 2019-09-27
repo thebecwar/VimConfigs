@@ -1,0 +1,7 @@
+Powershell & CMD solarized dark colors:
+https://github.com/neilpa/cmd-colors-solarized
+
+Get-ChildItem colorization
+https://github.com/joonro/Get-ChildItemColor
+
+

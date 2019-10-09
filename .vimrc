@@ -186,6 +186,8 @@ function! CollapseFunctions()
   %g/function/normal zc
 endfunction
 
+command! -nargs=0 BDAll silent bufdo bd
+
 """""""""""""""""""""""""""""""""
 " KEY MAPPINGS
 """""""""""""""""""""""""""""""""
@@ -208,11 +210,10 @@ nnoremap <F5> :OpenCwdInVSCode<CR>
 nnoremap <F6> :nohlsearch<CR>
 nnoremap <F7> :UndotreeToggle<CR>
 nnoremap <F8> :call CollapseFunctions()<CR>
-" HexMode
-noremap <F9> :Hexmode<CR>
-" Tagbar
-noremap <F10> :TagbarToggle<CR>
-nnoremap <F11> :GitGutterLineHighlightsToggle<CR>
+
+noremap <F9> :TagbarToggle<CR>
+nnoremap <F10> :GitGutterLineHighlightsToggle<CR>
+noremap <F11> :BDAll<CR>
 nnoremap <F12> :OpenScratch temp<CR>
 
 " fzf file search settings

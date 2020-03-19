@@ -260,6 +260,10 @@ nnoremap <silent> <leader>bl :call BnSkipTerm()<CR>
 nnoremap <leader>- ddp
 nnoremap <leader>= ddkP
 
+" Fix up and down arrows
+nnoremap <UP> g<UP>
+nnoremap <DOWN> g<DOWN>
+
 
 augroup commentary
     autocmd!
